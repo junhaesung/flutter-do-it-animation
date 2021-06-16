@@ -24,6 +24,7 @@ class AnimationApp extends StatefulWidget {
 class _AnimationApp extends State<AnimationApp> {
   final List<Person> people = [];
   int current = 0;
+  Color _weightColor = Colors.blue;
 
   @override
   void initState() {
@@ -67,7 +68,7 @@ class _AnimationApp extends State<AnimationApp> {
                     AnimatedContainer(
                       duration: Duration(seconds: 2),
                       curve: Curves.easeInCubic,
-                      color: Colors.blue,
+                      color: _weightColor,
                       child: Text(
                         '몸무게 ${people[current].weight}',
                         textAlign: TextAlign.center,
@@ -97,6 +98,7 @@ class _AnimationApp extends State<AnimationApp> {
                   setState(() {
                     if (current < people.length - 1) {
                       current += 1;
+                      _weightColor = _resolveWeightColor(people[current].weight);
                     }
                   });
                 },
@@ -107,6 +109,7 @@ class _AnimationApp extends State<AnimationApp> {
                   setState(() {
                     if (current > 0) {
                       current -= 1;
+                      _weightColor = _resolveWeightColor(people[current].weight);
                     }
                   });
                 },
@@ -118,5 +121,17 @@ class _AnimationApp extends State<AnimationApp> {
         ),
       ),
     );
+  }
+
+  Color _resolveWeightColor(double weight) {
+    if (weight < 40) {
+      return Colors.blueAccent;
+    } else if (weight < 60) {
+      return Colors.indigo;
+    } else if (weight < 80) {
+      return Colors.orange;
+    } else {
+      return Colors.red;
+    }
   }
 }
