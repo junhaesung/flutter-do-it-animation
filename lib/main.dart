@@ -12,8 +12,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: AnimationApp()
-    );
+        home: AnimationApp());
   }
 }
 
@@ -40,9 +39,84 @@ class _AnimationApp extends State<AnimationApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Animation Example'),
+      appBar: AppBar(
+        title: Text('Animation Example'),
       ),
-      body: Container(),
+      body: Container(
+        child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                child: Row(
+                  children: [
+                    SizedBox(
+                      width: 100,
+                      child: Text('이름: ${people[current].name}'),
+                    ),
+                    AnimatedContainer(
+                      duration: Duration(seconds: 2),
+                      curve: Curves.bounceIn,
+                      color: Colors.amber,
+                      child: Text(
+                        '키 ${people[current].height}',
+                        textAlign: TextAlign.center,
+                      ),
+                      width: 50,
+                      height: people[current].height,
+                    ),
+                    AnimatedContainer(
+                      duration: Duration(seconds: 2),
+                      curve: Curves.easeInCubic,
+                      color: Colors.blue,
+                      child: Text(
+                        '몸무게 ${people[current].weight}',
+                        textAlign: TextAlign.center,
+                      ),
+                      width: 50,
+                      height: people[current].weight,
+                    ),
+                    AnimatedContainer(
+                      duration: Duration(seconds: 2),
+                      curve: Curves.linear,
+                      color: Colors.pinkAccent,
+                      child: Text(
+                        'bmi ${people[current].bmi.toDouble().floor()}',
+                        textAlign: TextAlign.center,
+                      ),
+                      width: 50,
+                      height: people[current].bmi,
+                    ),
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                ),
+                height: 200,
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    if (current < people.length - 1) {
+                      current += 1;
+                    }
+                  });
+                },
+                child: Text('다음'),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  setState(() {
+                    if (current > 0) {
+                      current -= 1;
+                    }
+                  });
+                },
+                child: Text('이전'),
+              )
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
+        ),
+      ),
     );
   }
 }
