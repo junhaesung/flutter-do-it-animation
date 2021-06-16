@@ -23,18 +23,18 @@ class AnimationApp extends StatefulWidget {
 }
 
 class _AnimationApp extends State<AnimationApp> {
-  final List<People> peopleList = [];
+  final List<Person> people = [];
   int current = 0;
 
   @override
   void initState() {
     super.initState();
-    peopleList.add(People('스미스', 180, 92));
-    peopleList.add(People('메리', 162, 55));
-    peopleList.add(People('존', 177, 75));
-    peopleList.add(People('바트', 130, 40));
-    peopleList.add(People('콘', 194, 140));
-    peopleList.add(People('디디', 100, 80));
+    people.add(Person('스미스', 180, 92));
+    people.add(Person('메리', 162, 55));
+    people.add(Person('존', 177, 75));
+    people.add(Person('바트', 130, 40));
+    people.add(Person('콘', 194, 140));
+    people.add(Person('디디', 100, 80));
   }
 
   @override
